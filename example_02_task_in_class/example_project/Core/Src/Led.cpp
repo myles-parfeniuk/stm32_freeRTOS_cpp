@@ -33,7 +33,7 @@ void Led::set(bool on)
 void Led::blink_task_trampoline(void *pvParameters)
 {
 	//recast void pointer to led object pointer
-	Led *this_led = (Led *)pvParameters;
+	Led *this_led = static_cast<Led *>(pvParameters);
 
 	//launch the blink task
 	this_led->blink_task();

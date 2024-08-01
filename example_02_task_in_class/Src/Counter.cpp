@@ -25,7 +25,7 @@ task_counter_hdl(NULL), count(0){
  */
 void Counter::counter_task_trampoline(void *pvParameters) {
 	//recast void pointer to led object pointer
-	Counter *this_counter = (Counter*) pvParameters;
+	Counter *this_counter = static_cast<Counter *>(pvParameters);
 
 	//launch the counter task
 	this_counter->counter_task();

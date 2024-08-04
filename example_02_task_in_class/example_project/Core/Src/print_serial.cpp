@@ -19,7 +19,7 @@ void print_serial(const char *format, ...) {
 
 		if (buffer != nullptr) {
 			vsnprintf(buffer, buffer_sz + 1, format, args);
-			HAL_UART_Transmit(&huart2, (const uint8_t*) (buffer), buffer_sz, 1);
+			HAL_UART_Transmit(&huart2, (const uint8_t*) (buffer), buffer_sz, 10UL);
 
 			//free memory from string buffer
 			delete[] buffer;

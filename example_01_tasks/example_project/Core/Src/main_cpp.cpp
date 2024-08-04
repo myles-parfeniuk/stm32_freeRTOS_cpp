@@ -121,17 +121,16 @@ void print_serial(const char *format, ...) {
 	va_end(args_copy);
 
 	if (buffer_sz >= 0) {
-		//allocate memory for string, don't throw exception, return nullptr on failure
-		buffer = new (std::nothrow) char[buffer_sz + 1]; //+1 for null terminator
+		//allocate memory for string
+		buffer = new char[buffer_sz + 1]; //+1 for null terminator
 
 		if (buffer != nullptr) {
 			vsnprintf(buffer, buffer_sz + 1, format, args);
-			HAL_UART_Transmit(&huart2, (const uint8_t*) (buffer), buffer_sz, 1);
+			HAL_UART_Transmit(&huart2, (const uint8_t*) (buffer), buffer_sz, 10UL);
 
 			//free memory from string buffer
 			delete[] buffer;
 		}
-
 	}
 
 	va_end(args);
